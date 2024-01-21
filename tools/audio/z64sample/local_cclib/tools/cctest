@@ -1,0 +1,12 @@
+#!/bin/bash
+
+app="$(ccapp)"
+arguments=""
+
+for v in "$@"; do
+	arguments+="$v "
+done
+
+ccmake debug -j2 \
+    && valgrind --tool=callgrind --callgrind-out-file=._cg ./$app-native-debug $arguments \
+    && callgrind_annotate ._cg

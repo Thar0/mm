@@ -4,3 +4,10 @@
 *.cfg
 *.vtx.inc
 *.dlist.inc
+
+*.aifc
+*.seq
+!*.prg.seq
+
+samplebanks/**/*.xml
+soundfonts/**/*.xml

@@ -1,0 +1,34 @@
+#!/usr/bin/python3
+
+import os, sys
+from pathlib import Path
+import cclib as cc
+
+def main():
+	ccpath = cc.path()
+	curpath = os.getcwd()
+	ccpikac = ccpath + '/tools/pikacompiler/target/debug/pikac'
+
+	if not os.path.isfile(ccpikac):
+		os.chdir(ccpath + '/tools/pikacompiler')
+		if os.system('cargo build') != 0:
+			exit()
+		os.chdir(curpath)
+
+	if len(sys.argv) == 1:
+		exit(1)
+
+	pyi_path = sys.argv[1]
+	module = sys.argv[2]
+
+	os.chdir(pyi_path)
+
+	command = ' '.join([
+		ccpikac,
+		module
+	])
+
+	if os.system(command) != 0:
+		exit(1)
+
+main()

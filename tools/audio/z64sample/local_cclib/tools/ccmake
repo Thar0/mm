@@ -1,0 +1,41 @@
+#!/bin/bash
+
+argadd=""
+
+for v in "$@"; do
+	case $v in
+		"clean")
+			make clean
+			exit 0
+			;;
+		"clear")
+			make clean
+			exit 0
+			;;
+		"clean-all")
+			make clean-all
+			exit 0
+			;;
+		"clear-all")
+			make clean-all
+			exit 0
+			;;
+		"w32")
+			argadd+="target=i686-w64-mingw32.static "
+			;;
+		"w64")
+			argadd+="target=x86_64-w64-mingw32.static "
+			;;
+		"debug")
+			argadd+="debug=true "
+			;;
+		"release")
+			argadd+="release=true "
+			;;
+		*)
+			argadd+="$v "
+			;;
+	esac
+done
+
+make $argadd

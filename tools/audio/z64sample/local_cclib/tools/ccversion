@@ -1,0 +1,15 @@
+#!/usr/bin/python3
+
+import os
+
+def main():
+	with open('Makefile', 'r') as f:
+		s = f.read()
+		i = s.find('application_version ') + len('application_version ')
+		s = s[i:]
+		i = s.find('= ') + len('= ')
+		s = s[i:]
+		print(s.split()[0], end='')
+
+if __name__ == '__main__':
+	main()

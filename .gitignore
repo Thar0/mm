@@ -32,6 +32,7 @@ nonmatchings/
 tools/ido5.3_compiler/
 tools/ido7.1_compiler/
 tools/qemu-mips
+tools/qemu-irix
 tools/ido_recomp/* binary
 ctx.c
 graphs/
@@ -43,6 +44,9 @@ tools/mips_to_c/
 # Assets
 *.png
 *.jpg
+*.aiff
+*.aifc
+*.wav
 !*_custom*
 .extracted-assets.json
 

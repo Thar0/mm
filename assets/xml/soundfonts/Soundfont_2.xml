@@ -1,0 +1,29 @@
+<!-- This file is only for extraction of vanilla data. For other purposes see assets/soundfonts/ -->
+<SoundFont Name="Soundfont_2" Index="2">
+    <Envelopes>
+        <Envelope Name="Env0"/>
+    </Envelopes>
+    <Instruments>
+        <Instrument/>
+        <Instrument Name="SF2_INST_1"/>
+        <Instrument Name="SF2_INST_2"/>
+        <Instrument Name="SF2_INST_3"/>
+        <Instrument Name="SF2_INST_4"/>
+        <Instrument Name="SF2_INST_5"/>
+        <Instrument Name="SF2_INST_6"/>
+        <Instrument Name="SF2_INST_7"/>
+        <Instrument Name="SF2_INST_8"/>
+        <Instrument Name="SF2_INST_9"/>
+        <Instrument Name="SF2_INST_10"/>
+        <Instrument Name="SF2_INST_11"/>
+        <Instrument Name="SF2_INST_12"/>
+        <Instrument Name="SF2_INST_13"/>
+        <Instrument Name="SF2_INST_14"/>
+        <Instrument Name="SF2_INST_15"/>
+        <Instrument Name="SF2_INST_16"/>
+        <Instrument Name="SF2_INST_17"/>
+        <Instrument Name="SF2_INST_18"/>
+        <Instrument Name="SF2_INST_19"/>
+        <Instrument Name="SF2_INST_20"/>
+    </Instruments>
+</SoundFont>

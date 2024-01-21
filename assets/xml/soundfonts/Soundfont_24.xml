@@ -1,0 +1,27 @@
+<!-- This file is only for extraction of vanilla data. For other purposes see assets/soundfonts/ -->
+<SoundFont Name="Soundfont_24" Index="24">
+    <Envelopes>
+        <Envelope Name="Env0"/>
+        <Envelope Name="Env1"/>
+    </Envelopes>
+    <Instruments>
+        <Instrument/>
+        <Instrument/>
+        <Instrument/>
+        <Instrument/>
+        <Instrument/>
+        <Instrument/>
+        <Instrument/>
+        <Instrument/>
+        <Instrument/>
+        <Instrument/>
+        <Instrument Name="SF24_INST_10"/>
+    </Instruments>
+    <Drums>
+        <Drum Name="SF24_DRUM_0"/>
+        <Drum Name="SF24_DRUM_1"/>
+        <Drum Name="SF24_DRUM_2"/>
+        <Drum Name="SF24_DRUM_3"/>
+        <Drum Name="SF24_DRUM_4"/>
+    </Drums>
+</SoundFont>

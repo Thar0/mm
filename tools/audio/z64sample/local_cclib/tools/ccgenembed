@@ -1,0 +1,26 @@
+#!/usr/bin/python3
+
+import sys
+from pathlib import Path
+
+def main():
+	input = sys.argv[1]
+	list = input.split(' ')
+
+	print('#ifndef CCLIB_EMBED_H')
+	print('#define CCLIB_EMBED_H')
+	print('')
+	print('typedef struct {')
+	print('\tunsigned int  size;')
+	print('\tunsigned char data[];')
+	print('} Embed;')
+	print('')
+
+	if len(input) > 0:
+		for name in list:
+			if len(name) != 0:
+				print(f"extern Embed g_embed_{Path(name).stem};")
+	print('')
+	print('#endif')
+
+main()

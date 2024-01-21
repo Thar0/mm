@@ -1,0 +1,114 @@
+#!/usr/bin/python3
+
+import os, sys
+import cclib as cc
+
+config_template = '''\
+CCDIR = $$CCDIR$$
+'''
+
+makefile_template = '''\
+include project-config.mk
+include $(CCDIR)/make/ccmake-setup.mk
+
+application_name    = $$NAME$$
+application_version = 1.0.0
+application_author  = z64tools
+
+CFLAGS    += -Ofast
+LDFLAGS   +=
+
+output     = $(application_name)-$(targetnm)$(extension)
+cleanies   = $(application_name)-*
+libraries  = $(cclib)
+
+src       += $(shell find src -type f -name '*.c' $(stderr_null))
+embed     += $(shell find src/emb -type f $(stderr_null))
+pyi       += $(shell find src/pydef -type f -name '*.pyi' $(stderr_null))
+
+include $(CCDIR)/make/ccmake-recipe.mk
+'''
+
+gitignore_template = '''\
+._*
+bin
+compile_flags.txt
+*-portable-source.zip
+embed-*.h
+project-config.mk
+$$NAME$$-*
+!*/$$NAME$$-*
+src/pydef/*.c
+src/pydef/*.h
+!src/pydef/*.impl.c
+'''
+
+editorconfig_template = '''\
+root = true
+[*]
+end_of_line = lf
+indent_style = tab
+indent_size = tab
+'''
+
+compile_flags_template = '''\
+-IX:/usr/__include
+-IX:/projects/app/cclib
+-IX:/projects/app/cclib/clap/include
+-I.
+-D__ide__=1
+-D__debug__=1
+-D__ccname__="__ccname__"
+-D__ccversion__="__ccversion__"
+-D__ccauthor__="__ccauthor__"
+-Wall
+-Wextra
+-Wno-unused-parameter
+-Wno-microsoft-anon-tag
+-fblocks
+-ferror-limit=400
+-include embed-z64reskin.h
+'''
+
+def main():
+	global config_template, makefile_template, gitignore_template
+	global editorconfig_template, compile_flags_template
+
+	ccpath = cc.path()
+	curpath = os.getcwd()
+	name:str = ''
+
+	if curpath == ccpath:
+		print('not allowed in cclib dir!')
+		exit(1)
+
+	if len(sys.argv) == 2:
+		name = sys.argv[1]
+
+	while len(name) == 0 or not cc.valid_name(name):
+		name = input('Name of the project: ')
+
+	config_template = config_template.replace('$$CCDIR$$', ccpath)
+	makefile_template = makefile_template.replace('$$NAME$$', name)
+	gitignore_template = gitignore_template.replace('$$NAME$$', name)
+
+	v = {
+		'project-config.mk': config_template,
+		'Makefile':          makefile_template,
+		'.gitignore':        gitignore_template,
+		'.editorconfig':     editorconfig_template,
+		'compile_flags.txt': compile_flags_template,
+	}
+
+	for name, temp in v.items():
+		with open(name, 'w') as f:
+			f.write(temp)
+
+	if not os.path.isdir('src'):
+		os.mkdir('src')
+
+	print('OK')
+
+
+if __name__ == "__main__":
+	main()

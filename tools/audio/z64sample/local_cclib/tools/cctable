@@ -1,0 +1,44 @@
+#!/usr/bin/python3
+
+template_table = '''\
+#ifndef TBL_ENUM
+#define TBL_INTERNAL 1
+#define TBL_ENUM(enum, ...) enum
+
+typedef enum {
+#endif
+
+TBL_ENUM ($$TABLE_NAME_ENUM$$_ITEM_A, ),
+
+#if TBL_INTERNAL
+$$TABLE_NAME_ENUM$$_MAX
+} $$TABLE_NAME$$;
+#undef TBL_INTERNAL
+#endif
+#undef TBL_ENUM
+'''
+
+import sys
+import cclib as cc
+
+def main():
+	global template_table
+
+	if len(sys.argv) != 3:
+		print('usage: cctable <file.h> table_name')
+		exit(1)
+	if not sys.argv[1].endswith('.h'):
+		print('output must be a .h file')
+		exit(1)
+	if not cc.valid_name(sys.argv[2]):
+		print('invalid name:', '\'%s\'' % sys.argv[2])
+		exit(1)
+
+	template_table = template_table.replace('$$TABLE_NAME$$', sys.argv[2])
+	template_table = template_table.replace('$$TABLE_NAME_ENUM$$', cc.get_enum_name(sys.argv[2]))
+
+	with open(sys.argv[1], 'w') as f:
+		f.write(template_table)
+
+
+main()

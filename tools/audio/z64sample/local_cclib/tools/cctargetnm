@@ -1,0 +1,18 @@
+#!/usr/bin/python3
+
+import sys
+
+def main():
+	name:str = sys.argv[1]
+	name = name.replace('i686-w64-', '')
+	name = name.replace('x86_64-', '')
+	name = name.replace('.', '-')
+
+	if name.find('32') == None and sys.argv[1].find('i686-w64'):
+		name += '32'
+	if name.find('64') == None and sys.argv[1].find('x86_64'):
+		name += '64'
+
+	print(name)
+
+main()

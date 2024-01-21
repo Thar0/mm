@@ -1,0 +1,12 @@
+._*
+bin
+compile_flags.txt
+*-portable-source.zip
+embed-*.h
+project-config.mk
+z64sample-*
+!*/z64sample-*
+src/pydef/*.c
+src/pydef/*.h
+!src/pydef/*.impl.c
+test/*

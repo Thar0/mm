@@ -1,0 +1,82 @@
+#!/usr/bin/python3
+
+import os
+from subprocess import check_output as exec
+from pathlib import Path
+
+def yes(file_a:str, file_b:str, type:str):
+	do_exit = False
+
+	with open(file_a, 'rb') as a:
+		with open(file_b, 'rb') as b:
+			byte_a = a.read()
+			byte_b = b.read()
+			size_a = len(byte_a)
+			size_b = len(byte_b)
+
+			size = min(size_a, size_b)
+
+			if size_a != size_b:
+				print('size difference!')
+
+			next_i = -1
+
+			for i in range(size):
+				if i < next_i:
+					continue
+
+				line_start = i - (i % 16)
+				left = (size - line_start)
+
+				if left > 16:
+					left = 16
+
+				if byte_a[i] != byte_b[i]:
+					do_exit = True
+					pad = '               '
+					for y in range(i - line_start):
+						pad += '   '
+
+					str_a = ' '.join('%02X' % x for x in byte_a[line_start:line_start+left])
+					str_b = ' '.join('%02X' % x for x in byte_b[line_start:line_start+left])
+
+					print(
+						'\033[92mbase \033[91m%08X\033[0m' % line_start, ': ', str_a, '\n',
+						'\033[92mnew  \033[91m%08X\033[0m' % line_start, ': ', str_b, '\n',
+						sep='', end=''
+						)
+
+					print(pad, '\033[93m^\033[0m', sep='')
+					next_i = line_start + 16
+
+	if do_exit:
+		print('match error!', type)
+		exit(1)
+
+def main():
+	if (os.system('ccmake debug -j2')):
+		exit(1)
+
+	list = exec(['find', 'test/', '-type', 'f', '-name', '*.aifc']).decode().split()
+
+	for input in list:
+		for type in ['.aiff', '.wav']:
+			temp = input.replace('/Sample', '/__Sample').replace('.aifc', type)
+			back = input.replace('/Sample', '/__Sample')
+
+			print('\033[94m', Path(input).stem, '\033[0m: ', type[1:], sep='')
+			if (os.system(' '.join([ './z64sample-native-debug', input, temp, '-matching', '-silent' ]))):
+				print('closing!', type)
+				exit(1)
+
+			if (os.system(' '.join([ './z64sample-native-debug', temp, back, '-silent' ]))):
+				print('closing back!', type)
+				exit(1)
+
+			if (os.system(' '.join([ 'diff', input, back, ]))):
+				yes(input, back, type)
+
+			os.remove(temp)
+			os.remove(back)
+
+main()

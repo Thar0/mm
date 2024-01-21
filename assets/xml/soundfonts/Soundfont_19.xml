@@ -1,0 +1,40 @@
+<!-- This file is only for extraction of vanilla data. For other purposes see assets/soundfonts/ -->
+<SoundFont Name="Soundfont_19" Index="19">
+    <Envelopes>
+        <Envelope Name="Env0"/>
+        <Envelope Name="Env1"/>
+        <Envelope Name="Env2"/>
+        <Envelope Name="Env3"/>
+        <Envelope Name="Env4"/>
+        <Envelope Name="Env5"/>
+        <Envelope Name="Env6"/>
+        <Envelope Name="Env7"/>
+        <Envelope Name="Env8"/>
+        <Envelope Name="Env9"/>
+        <Envelope Name="Env10"/>
+    </Envelopes>
+    <Instruments>
+        <Instrument Name="SF19_INST_0"/>
+        <Instrument Name="SF19_INST_1"/>
+        <Instrument Name="SF19_INST_2"/>
+        <Instrument Name="SF19_INST_3"/>
+        <Instrument Name="SF19_INST_4"/>
+        <Instrument Name="SF19_INST_5"/>
+        <Instrument Name="SF19_INST_6"/>
+        <Instrument Name="SF19_INST_7"/>
+        <Instrument/>
+        <Instrument/>
+        <Instrument Name="SF19_INST_10"/>
+        <Instrument Name="SF19_INST_11"/>
+        <Instrument Name="SF19_INST_12"/>
+        <Instrument Name="SF19_INST_13"/>
+        <Instrument Name="SF19_INST_14"/>
+    </Instruments>
+    <Drums>
+        <Drum Name="SF19_DRUM_0"/>
+        <Drum Name="SF19_DRUM_1"/>
+        <Drum Name="SF19_DRUM_2"/>
+        <Drum Name="SF19_DRUM_3"/>
+        <Drum Name="SF19_DRUM_4"/>
+    </Drums>
+</SoundFont>

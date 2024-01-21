@@ -1,18 +1,14 @@
 #include "global.h"
 #include "buffers.h"
+#include "build/assets/sequence_sizes.h"
+#include "build/assets/soundfont_sizes.h"
+#define SFX_SEQ_SIZE Sequence_0_SIZE
+#define AMBIENCE_SEQ_SIZE Sequence_1_SIZE
 
 const s16 gAudioTatumInit[] = {
     0x1C00,          // unused
     TATUMS_PER_BEAT, // gTatumsPerBeat
 };
-
-// TODO: Extract from table?
-#define NUM_SOUNDFONTS 41
-#define SFX_SEQ_SIZE 0xC6A0
-#define AMBIENCE_SEQ_SIZE 0xFC0
-#define SOUNDFONT_0_SIZE 0x81C0
-#define SOUNDFONT_1_SIZE 0x36D0
-#define SOUNDFONT_2_SIZE 0xCE0
 
 // Sizes of everything on the init pool
 #define AI_BUFFERS_SIZE (AIBUF_SIZE * ARRAY_COUNT(gAudioCtx.aiBuffers))
@@ -20,7 +16,7 @@ const s16 gAudioTatumInit[] = {
 
 // 0x19BD0
 #define PERMANENT_POOL_SIZE \
-    (SFX_SEQ_SIZE + AMBIENCE_SEQ_SIZE + SOUNDFONT_0_SIZE + SOUNDFONT_1_SIZE + SOUNDFONT_2_SIZE + 0x430)
+    (SFX_SEQ_SIZE + AMBIENCE_SEQ_SIZE + Soundfont_0_SIZE + Soundfont_1_SIZE + Soundfont_2_SIZE + 0x430)
 
 const AudioHeapInitSizes gAudioHeapInitSizes = {
     ALIGN16(sizeof(gAudioHeap) - 0x100),                                         // audio heap size

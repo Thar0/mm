@@ -1,0 +1,15 @@
+#!/usr/bin/python3
+
+import sys
+
+hash:int = 5381
+
+for c in sys.argv[1].strip('"'):
+	hash = ((hash << 5) + hash) + ord(c)
+	hash &= 0xFFFFFFFF
+
+
+if len(sys.argv) > 2:
+	print("0x%08X" % (hash % int(sys.argv[2])))
+else:
+	print("0x%08X" % hash)

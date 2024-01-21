@@ -1,0 +1,18 @@
+<!-- This file is only for extraction of vanilla data. For other purposes see assets/soundfonts/ -->
+<SoundFont Name="Soundfont_20" Index="20">
+    <Envelopes>
+        <Envelope Name="Env0"/>
+        <Envelope Name="Env1"/>
+        <Envelope Name="Env2"/>
+        <Envelope Name="Env3"/>
+        <Envelope Name="Env4"/>
+    </Envelopes>
+    <Instruments>
+        <Instrument Name="SF20_INST_0"/>
+        <Instrument Name="SF20_INST_1"/>
+        <Instrument Name="SF20_INST_2"/>
+        <Instrument Name="SF20_INST_3"/>
+        <Instrument Name="SF20_INST_4"/>
+        <Instrument Name="SF20_INST_5"/>
+    </Instruments>
+</SoundFont>

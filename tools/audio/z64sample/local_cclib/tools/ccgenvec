@@ -1,0 +1,107 @@
+#!/usr/bin/python3
+
+import sys
+
+prefix = ''
+
+arithmetic = {
+	'Add': '+',
+	'Sub': '-',
+	'Mul': '*',
+	'Div': '/',
+}
+
+params = [
+	{
+		'(num)':     '2',
+		'(members)': 'float x, y',
+	}, {
+		'(num)':     '3',
+		'(members)': 'float x, y, z',
+	}, {
+		'(num)':     '4',
+		'(members)': 'float x, y, z, w',
+	}
+]
+
+vec_define = '''\
+typedef union Vec(num)f {
+\tstruct {
+\t\t(members);
+\t};
+\tfloat axis[(num)];
+} Vec(num)f;
+
+Vec(num)f (prefix)Vec(num)f_Add(Vec(num)f, Vec(num)f);
+Vec(num)f (prefix)Vec(num)f_Sub(Vec(num)f, Vec(num)f);
+Vec(num)f (prefix)Vec(num)f_Mul(Vec(num)f, Vec(num)f);
+Vec(num)f (prefix)Vec(num)f_Div(Vec(num)f, Vec(num)f);
+Vec(num)f (prefix)Vec(num)f_MulVal(Vec(num)f, float);
+Vec(num)f (prefix)Vec(num)f_DivVal(Vec(num)f, float);
+'''
+
+vec_sep = '////////////////////////////////////////////////////////////////////'
+
+vec_impl = '''\
+Vec(num)f (prefix)Vec(num)f_(method)(Vec(num)f a, Vec(num)f b) {
+\tfor (int i = 0; i < (num); i++)
+\t\ta.axis[i] (op)= b.axis[i];
+\t
+\treturn a;
+}
+'''
+
+def source():
+	global vec_impl
+
+	print('''\
+#include "cclib-vector.h"
+''')
+
+	temp = ''
+
+	for (key, val) in arithmetic.items():
+		s = vec_impl
+		s = s.replace('(method)', key)
+		s = s.replace('(op)', val)
+		temp += s + '\n'
+
+	for dict in params:
+		s = temp
+		for (key, val) in dict.items():
+			s = s.replace(key, val)
+		print(vec_sep, end='\n\n')
+		print(s, end='')
+
+
+def header():
+	print('''\
+#ifndef CCLIB_VECTOR_H
+#define CCLIB_VECTOR_H
+''')
+
+	for dict in params:
+		s = vec_define
+		for (key, val) in dict.items():
+			s = s.replace(key, val)
+		print(s)
+
+	print('''\
+#endif // CCLIB_VECTOR_H\
+''')
+
+
+def main():
+	global vec_define, vec_impl
+	vec_define = vec_define.replace('(prefix)', prefix)
+	vec_impl = vec_impl.replace('(prefix)', prefix)
+
+	if sys.argv[1] == 'header':
+		header()
+	elif sys.argv[1] == 'source':
+		source()
+	else:
+		print('OH NO!')
+
+
+main()

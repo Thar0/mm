@@ -1,0 +1,21 @@
+#!/usr/bin/python3
+
+import os
+import cclib as cc
+
+def main():
+	ccpath = cc.path()
+	curpath = os.getcwd()
+
+	# with open('Makefile', 'r') as f:
+	# 	s = f.read()
+	# 	i = s.find('application_name = ') + 19
+	# 	s = s[i:]
+	# 	s = s.split()[0]
+
+	with open(curpath + '/project-config.mk', 'w') as ff:
+		ff.write('CCDIR = ')
+		ff.write(ccpath)
+
+if __name__ == '__main__':
+	main()

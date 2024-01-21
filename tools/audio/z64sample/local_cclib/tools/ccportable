@@ -1,0 +1,102 @@
+#!/usr/bin/python3
+
+import os, subprocess, shutil, datetime
+import cclib as cc
+
+def copy(dir, list:list, dst, inc_list:list):
+
+	for file in list:
+		input = os.path.join(dir, file)
+		output = os.path.join(dst, file)
+
+		if os.path.isdir(input):
+			continue
+
+
+		if file.find('/') > 0:
+			skip = False
+			for p in inc_list:
+				skip = True
+				if str(file).startswith(p):
+					skip = False
+					break
+
+			if skip:
+				continue
+
+			try:
+				inc_list.index('pikapy')
+			except ValueError:
+				if file.startswith('tools/pikacompiler'):
+					continue
+
+		path =  os.path.dirname(output)
+		os.makedirs(path, exist_ok=True)
+
+		cmd = ' '.join(['cp', '"%s"' % input, '"%s"' % output ])
+		os.system(cmd)
+
+def main():
+	folders = [ 'make', 'tools' ]
+	cc_path = cc.path()
+	cur_path = os.getcwd()
+
+	if cc_path == cur_path:
+		print('no no! not in the ccpath')
+		exit(1)
+
+	with open('Makefile', 'r') as f:
+		s = f.read()
+		i = s.find('libraries')
+		s = s[i:]
+		e = s.find('\n')
+		s = s[0:e]
+		s = s.split()
+
+		s.remove('libraries')
+		s.remove('=')
+
+		for split in s:
+			folders.append(split.strip('$()'))
+
+	changes_cur = subprocess.check_output(['git', 'status', '--porcelain'], cwd=os.getcwd()).decode()
+	changes_cc = subprocess.check_output(['git', 'status', '--porcelain'], cwd=cc.path()).decode()
+
+	if len(changes_cur):
+		print('uncommitted changes on project:', subprocess.check_output(['ccapp']).decode())
+		exit(1)
+	if len(changes_cc):
+		print('uncommitted changes on cclib')
+		exit(1)
+
+	list_cur = subprocess.check_output(['git', 'ls-files'], cwd=os.getcwd()).decode().split('\n')
+	list_cc = subprocess.check_output(['git', 'ls-files'], cwd=cc.path()).decode().split('\n')
+	app_name = subprocess.check_output(['ccapp']).decode()
+
+	name_temp_dir = '._portable_source'
+
+	os.system('rm -rf ' + name_temp_dir)
+	os.makedirs(name_temp_dir, exist_ok=True)
+
+	copy(cur_path, list_cur, name_temp_dir, [])
+	copy(cc_path, list_cc, name_temp_dir + '/local_cclib', folders)
+
+	stamp = datetime.datetime(2000, 1, 1, 12, 0).timestamp()
+	for root, dirs, files in os.walk(name_temp_dir):
+		for dir in dirs:
+			item = os.path.join(root, dir)
+			os.utime(item, (stamp, stamp))
+		for file in files:
+			item = os.path.join(root, file)
+			os.utime(item, (stamp, stamp))
+
+	with open(name_temp_dir + '/project-config.mk', 'w') as f:
+		f.write('CCDIR = $(shell pwd)/local_cclib')
+	with open(name_temp_dir + '/local_cclib_commit_hash', 'w') as f:
+		f.write(subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=cc.path()).decode())
+
+	os.system('rm -rf *-portable-source.zip')
+	shutil.make_archive(app_name + '-portable-source', 'zip', name_temp_dir)
+	os.system('rm -rf ' + name_temp_dir)
+
+main()
