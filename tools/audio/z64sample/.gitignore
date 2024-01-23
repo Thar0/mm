@@ -3,7 +3,6 @@ bin
 compile_flags.txt
 *-portable-source.zip
 embed-*.h
-project-config.mk
 z64sample-*
 !*/z64sample-*
 src/pydef/*.c

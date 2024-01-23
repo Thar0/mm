@@ -1,0 +1,1 @@
+CCDIR = $(shell pwd)/local_cclib
