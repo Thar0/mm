@@ -553,7 +553,7 @@ class AudioTableFile:
     def write_extraction_xml(self, path):
         xml = XMLWriter()
 
-        xml.write_comment("This file is only for extraction of vanilla data. For other purposes see assets/samplebanks/")
+        xml.write_comment("This file is only for extraction of vanilla data. For other purposes see assets/audio/samplebanks/")
 
         start = {
             "Name"  : f"Bank{self.bank_num}",

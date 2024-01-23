@@ -1,0 +1,26 @@
+<!-- This file is only for extraction of vanilla data. For other purposes see assets/audio/soundfonts/ -->
+<SoundFont Name="Soundfont_16" Index="16">
+    <Envelopes>
+        <Envelope Name="Env0"/>
+        <Envelope Name="Env1"/>
+        <Envelope Name="Env2"/>
+        <Envelope Name="Env3"/>
+    </Envelopes>
+    <Instruments>
+        <Instrument/>
+        <Instrument Name="SF16_INST_1"/>
+        <Instrument/>
+        <Instrument Name="SF16_INST_3"/>
+        <Instrument/>
+        <Instrument/>
+        <Instrument/>
+        <Instrument/>
+        <Instrument/>
+        <Instrument/>
+        <Instrument Name="SF16_INST_10"/>
+        <Instrument Name="SF16_INST_11"/>
+        <Instrument Name="SF16_INST_12"/>
+        <Instrument/>
+        <Instrument Name="SF16_INST_14"/>
+    </Instruments>
+</SoundFont>

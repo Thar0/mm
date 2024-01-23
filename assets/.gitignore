@@ -9,5 +9,5 @@
 *.seq
 !*.prg.seq
 
-samplebanks/**/*.xml
-soundfonts/**/*.xml
+audio/samplebanks/**/*.xml
+audio/soundfonts/**/*.xml

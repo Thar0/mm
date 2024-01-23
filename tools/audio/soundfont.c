@@ -41,6 +41,7 @@ read_soundfont_info(soundfont *sf, xmlNodePtr node)
     sf->info.bank_path_dd = NULL;
     sf->info.pointer_index = -1;
     sf->info.loops_have_frames = false;
+    sf->info.pad_to_size = 0;
     xml_parse_node_by_spec(sf, node, spec, ARRAY_COUNT(spec));
 
     xmlDocPtr sb_doc = xmlReadFile(sf->info.bank_path, NULL, XML_PARSE_NONET);

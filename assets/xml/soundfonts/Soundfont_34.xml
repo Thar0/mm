@@ -1,9 +1,0 @@
-<!-- This file is only for extraction of vanilla data. For other purposes see assets/soundfonts/ -->
-<SoundFont Name="Soundfont_34" Index="34">
-    <Envelopes>
-        <Envelope Name="Env0"/>
-    </Envelopes>
-    <Instruments>
-        <Instrument Name="SF34_INST_0"/>
-    </Instruments>
-</SoundFont>

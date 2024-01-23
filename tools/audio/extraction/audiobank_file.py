@@ -866,7 +866,7 @@ class AudiobankFile:
     def write_extraction_xml(self, path):
         xml = XMLWriter()
 
-        xml.write_comment("This file is only for extraction of vanilla data. For other purposes see assets/soundfonts/")
+        xml.write_comment("This file is only for extraction of vanilla data. For other purposes see assets/audio/soundfonts/")
 
         xml.write_start_tag("SoundFont", {
             "Name"  : self.name,

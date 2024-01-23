@@ -812,25 +812,25 @@ main(int argc, char **argv)
         if (argc != 4)
             return usage(progname);
 
-        const char *sb_hdr_out = argv[2];       // build/include/tables/oot/samplebank_table.h
-        const char *samplebanks_path = argv[3]; // assets/samplebanks/oot/
+        const char *sb_hdr_out = argv[2];
+        const char *samplebanks_path = argv[3];
 
         ret = tablegen_samplebanks(sb_hdr_out, samplebanks_path);
     } else if (strequ(mode, "-fonts")) {
         if (argc != 4)
             return usage(progname);
 
-        const char *sf_hdr_out = argv[2];      // build/include/tables/oot/soundfont_table.h
-        const char *soundfonts_path = argv[3]; // assets/soundfonts/oot/
+        const char *sf_hdr_out = argv[2];
+        const char *soundfonts_path = argv[3];
 
         ret = tablegen_soundfonts(sf_hdr_out, soundfonts_path);
     } else if (strequ(mode, "-sequences")) {
         if (argc != 5)
             return usage(progname);
 
-        const char *seq_font_tbl_out = argv[2]; // build/include/tables/oot/sequence_font_table.s
-        const char *seq_order_path = argv[3];   // build/include/tables/sequence_order.in
-        const char *sequences_path = argv[4];   // build/assets/sequences/oot/
+        const char *seq_font_tbl_out = argv[2];
+        const char *seq_order_path = argv[3];
+        const char *sequences_path = argv[4];
 
         ret = tablegen_sequences(seq_font_tbl_out, sequences_path, seq_order_path);
     } else {

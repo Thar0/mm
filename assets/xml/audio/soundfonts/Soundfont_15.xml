@@ -1,0 +1,34 @@
+<!-- This file is only for extraction of vanilla data. For other purposes see assets/audio/soundfonts/ -->
+<SoundFont Name="Soundfont_15" Index="15">
+    <Envelopes>
+        <Envelope Name="Env0"/>
+        <Envelope Name="Env1"/>
+        <Envelope Name="Env2"/>
+        <Envelope Name="Env3"/>
+        <Envelope Name="Env4"/>
+    </Envelopes>
+    <Instruments>
+        <Instrument/>
+        <Instrument/>
+        <Instrument/>
+        <Instrument/>
+        <Instrument/>
+        <Instrument Name="SF15_INST_5"/>
+        <Instrument Name="SF15_INST_6"/>
+        <Instrument Name="SF15_INST_7"/>
+        <Instrument Name="SF15_INST_8"/>
+        <Instrument/>
+        <Instrument Name="SF15_INST_10"/>
+        <Instrument Name="SF15_INST_11"/>
+        <Instrument/>
+        <Instrument/>
+        <Instrument Name="SF15_INST_14"/>
+    </Instruments>
+    <Drums>
+        <Drum Name="SF15_DRUM_0"/>
+        <Drum Name="SF15_DRUM_1"/>
+        <Drum Name="SF15_DRUM_2"/>
+        <Drum Name="SF15_DRUM_3"/>
+        <Drum Name="SF15_DRUM_4"/>
+    </Drums>
+</SoundFont>

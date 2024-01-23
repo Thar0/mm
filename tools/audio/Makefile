@@ -1,3 +1,4 @@
+PROGRAMS := afile_sizes atblgen elfpatch sbc sfc
 
 ifeq ($(shell which xml2-config),)
 	$(error Install libxml2-dev)
@@ -10,13 +11,16 @@ CC := gcc
 CFLAGS := -Wall -Wextra -pedantic
 OPTFLAGS := -Og -g3
 
+XML_CFLAGS := $(shell xml2-config --cflags)
+XML_LDFLAGS := $(shell xml2-config --libs)
+
 .PHONY: all clean distclean format
 
-all: afile_sizes atblgen elfpatch sbc sfc
+all: $(PROGRAMS)
 	$(MAKE) -C z64sample
 
 clean:
-	$(RM) afile_sizes atblgen elfpatch sbc sfc
+	$(RM) $(PROGRAMS)
 
 distclean: clean
 	$(MAKE) -C z64sample clean-all
@@ -28,13 +32,13 @@ afile_sizes: afile_sizes.c util.c
 	$(CC) $(CFLAGS) $(OPTFLAGS) $^ -o $@
 
 atblgen: audio_tablegen.c samplebank.c soundfont.c xml.c util.c
-	$(CC) $(CFLAGS) $(OPTFLAGS) $(shell xml2-config --cflags) $^ $(shell xml2-config --libs) -o $@
+	$(CC) $(CFLAGS) $(OPTFLAGS) $(XML_CFLAGS) $^ $(XML_LDFLAGS) -o $@
 
 elfpatch: elfpatch.c util.c
 	$(CC) $(CFLAGS) $(OPTFLAGS) $^ -o $@
 
 sbc: samplebank_compiler.c samplebank.c aifc.c xml.c util.c
-	$(CC) $(CFLAGS) $(OPTFLAGS) $(shell xml2-config --cflags) $^ $(shell xml2-config --libs) -o $@
+	$(CC) $(CFLAGS) $(OPTFLAGS) $(XML_CFLAGS) $^ $(XML_LDFLAGS) -o $@
 
 sfc: soundfont_compiler.c samplebank.c soundfont.c aifc.c xml.c util.c
-	$(CC) $(CFLAGS) $(OPTFLAGS) $(shell xml2-config --cflags) $^ $(shell xml2-config --libs) -o $@
+	$(CC) $(CFLAGS) $(OPTFLAGS) $(XML_CFLAGS) $^ $(XML_LDFLAGS) -o $@

@@ -115,17 +115,17 @@ def extract_samplebank(pool : ThreadPool, sample_banks : List[AudioTableFile], b
     # deal with remaining gaps, have to blob them unless we can find an exact match in another bank
     bank.finalize_coverage(sample_banks)
 
-    base_path = f"assets/samples/Bank{i}"
+    base_path = f"assets/audio/samples/Bank{i}"
 
     # write xml
-    os.makedirs(f"assets/samplebanks", exist_ok=True)
-    with open(f"assets/samplebanks/Samplebank_{i}.xml", "w") as outfile:
+    os.makedirs(f"assets/audio/samplebanks", exist_ok=True)
+    with open(f"assets/audio/samplebanks/Samplebank_{i}.xml", "w") as outfile:
         outfile.write(bank.to_xml(base_path))
 
     # write the extraction xml if specified
     if write_xml:
-        os.makedirs(f"assets/xml/samplebanks", exist_ok=True)
-        bank.write_extraction_xml(f"assets/xml/samplebanks/Samplebank_{i}.xml")
+        os.makedirs(f"assets/xml/audio/samplebanks", exist_ok=True)
+        bank.write_extraction_xml(f"assets/xml/audio/samplebanks/Samplebank_{i}.xml")
 
     os.makedirs(f"{base_path}/aifc", exist_ok=True)
 
@@ -171,7 +171,7 @@ def extract_sequences(sequence_table : AudioCodeTable, sequence_font_table : mem
     assert len(seq_enum_names) == len(sequence_table)
 
     if write_xml:
-        os.makedirs(f"assets/xml/sequences", exist_ok=True)
+        os.makedirs(f"assets/xml/audio/sequences", exist_ok=True)
 
     for i,entry in enumerate(sequence_table):
         entry : AudioCodeTable.AudioCodeTableEntry
@@ -214,7 +214,7 @@ def extract_sequences(sequence_table : AudioCodeTable, sequence_font_table : mem
                     "Index" : i,
                 })
 
-                with open(f"assets/xml/sequences/Sequence_{i}.xml", "w") as outfile:
+                with open(f"assets/xml/audio/sequences/Sequence_{i}.xml", "w") as outfile:
                     outfile.write(str(xml))
 
             if i in handwritten_sequences:
@@ -230,7 +230,7 @@ def extract_sequences(sequence_table : AudioCodeTable, sequence_font_table : mem
 
             # TODO also pass the relevant soundfont(s) files for proper instrument enum names
             disas = SequenceDisassembler(i, seq_data, SEQ_DISAS_HACKS[version_info.version_id].get(i, None), CMD_SPEC,
-                                         version_info.mml_version, f"assets/sequences/seq_{i}.seq",
+                                         version_info.mml_version, f"assets/audio/sequences/seq_{i}.seq",
                                          sequence_name, [soundfonts[i] for i in fonts], seq_enum_names)
             disas.analyze()
             disas.emit()
@@ -365,14 +365,14 @@ def extract_with_full_analysis(version_name : str, rom_path : str, write_xml : b
         sf.finalize()
 
         # write the soundfont xml itself
-        os.makedirs(f"assets/soundfonts", exist_ok=True)
-        with open(f"assets/soundfonts/{sf.file_name}.xml", "w") as outfile:
-            outfile.write(sf.to_xml(f"Soundfont_{i}", f"assets/samplebanks"))
+        os.makedirs(f"assets/audio/soundfonts", exist_ok=True)
+        with open(f"assets/audio/soundfonts/{sf.file_name}.xml", "w") as outfile:
+            outfile.write(sf.to_xml(f"Soundfont_{i}", f"assets/audio/samplebanks"))
 
         # write the extraction xml if specified
         if write_xml:
-            os.makedirs(f"assets/xml/soundfonts", exist_ok=True)
-            sf.write_extraction_xml(f"assets/xml/soundfonts/{sf.file_name}.xml")
+            os.makedirs(f"assets/xml/audio/soundfonts", exist_ok=True)
+            sf.write_extraction_xml(f"assets/xml/audio/soundfonts/{sf.file_name}.xml")
 
     # ==================================================================================================================
     # Extract sequences

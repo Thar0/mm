@@ -1,0 +1,29 @@
+<!-- This file is only for extraction of vanilla data. For other purposes see assets/audio/soundfonts/ -->
+<SoundFont Name="Soundfont_21" Index="21">
+    <Envelopes>
+        <Envelope Name="Env0"/>
+        <Envelope Name="Env1"/>
+        <Envelope Name="Env2"/>
+        <Envelope Name="Env3"/>
+        <Envelope Name="Env4"/>
+        <Envelope Name="Env5"/>
+        <Envelope Name="Env6"/>
+        <Envelope Name="Env7"/>
+        <Envelope Name="Env8"/>
+    </Envelopes>
+    <Instruments>
+        <Instrument Name="SF21_INST_0"/>
+        <Instrument/>
+        <Instrument Name="SF21_INST_2"/>
+        <Instrument Name="SF21_INST_3"/>
+        <Instrument Name="SF21_INST_4"/>
+        <Instrument/>
+        <Instrument Name="SF21_INST_6"/>
+        <Instrument Name="SF21_INST_7"/>
+        <Instrument Name="SF21_INST_8"/>
+        <Instrument/>
+        <Instrument Name="SF21_INST_10"/>
+        <Instrument Name="SF21_INST_11"/>
+        <Instrument Name="SF21_INST_12"/>
+    </Instruments>
+</SoundFont>

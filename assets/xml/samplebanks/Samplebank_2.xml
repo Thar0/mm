@@ -1,9 +1,0 @@
-<!-- This file is only for extraction of vanilla data. For other purposes see assets/samplebanks/ -->
-<SampleBank Name="Bank2" Index="2">
-    <Sample Name="SAMPLE_2_0" Offset="0x000000" Size="0x2532" SampleRate="16000" BaseNote="C4"/>
-    <Sample Name="SAMPLE_2_1" Offset="0x002540" Size="0x22BC" SampleRate="32000" BaseNote="C4"/>
-    <Sample Name="SAMPLE_2_2" Offset="0x004800" Size="0x2ACA" SampleRate="22050" BaseNote="BF4"/>
-    <Sample Name="SAMPLE_2_3" Offset="0x0072D0" Size="0x089E" SampleRate="16000" BaseNote="DF6"/>
-    <Sample Name="SAMPLE_2_4" Offset="0x007B70" Size="0x0ABA" SampleRate="22050" BaseNote="B5"/>
-    <Sample Name="SAMPLE_2_5" Offset="0x008630" Size="0x747A" SampleRate="22050" BaseNote="A3"/>
-</SampleBank>

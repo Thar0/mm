@@ -1,0 +1,23 @@
+<!-- This file is only for extraction of vanilla data. For other purposes see assets/audio/soundfonts/ -->
+<SoundFont Name="Soundfont_29" Index="29">
+    <Envelopes>
+        <Envelope Name="Env0"/>
+        <Envelope Name="Env1"/>
+        <Envelope Name="Env2"/>
+        <Envelope Name="Env3"/>
+        <Envelope Name="Env4"/>
+    </Envelopes>
+    <Instruments>
+        <Instrument Name="SF29_INST_0"/>
+        <Instrument/>
+        <Instrument/>
+        <Instrument Name="SF29_INST_3"/>
+        <Instrument Name="SF29_INST_4"/>
+        <Instrument Name="SF29_INST_5"/>
+        <Instrument/>
+        <Instrument/>
+        <Instrument/>
+        <Instrument/>
+        <Instrument Name="SF29_INST_10"/>
+    </Instruments>
+</SoundFont>
