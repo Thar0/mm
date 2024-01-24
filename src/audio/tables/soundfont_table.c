@@ -65,7 +65,7 @@ extern AudioTable gSoundFontTable;
 #define DEFINE_SOUNDFONT(name, medium, cachePolicy, sampleBankNormal, sampleBankDD, nInstruments, nDrums, nSfx)   \
     extern u8 name##_Start[]; extern u8 name##_Size[];
 
-#include "soundfont_table.h"
+#include "audio/soundfont_table.h"
 
 #undef DEFINE_SOUNDFONT
 
@@ -76,7 +76,7 @@ NO_REORDER AudioTableHeader sSoundFontTableHeader = {
 #define DEFINE_SOUNDFONT(name, medium, cachePolicy, sampleBankNormal, sampleBankDD, nInstruments, nDrums, nSfx) \
     1+
 
-#include "soundfont_table.h"
+#include "audio/soundfont_table.h"
 
 #undef DEFINE_SOUNDFONT
     0,
@@ -93,7 +93,7 @@ NO_REORDER AudioTableEntry sSoundFontTableEntries[] = {
     { (u32)name##_Start, (u32)name##_Size, (medium), (cachePolicy), ((sampleBankNormal) << 8) | (sampleBankDD), \
       ((nInstruments) << 8) | (nDrums), (nSfx) },
 
-#include "soundfont_table.h"
+#include "audio/soundfont_table.h"
 
 #undef DEFINE_SOUNDFONT
 };

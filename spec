@@ -783,7 +783,7 @@ beginseg
     include_data_with_rodata "build/src/code/z_game_over.o"
     include "build/src/code/z_construct.o"
     include "build/src/audio/tables/soundfont_table.o"
-    include "build/assets/sequence_font_table.o"
+    include "build/assets/audio/sequence_font_table.o"
     include "build/src/audio/tables/sequence_table.o"
     include "build/src/audio/tables/samplebank_table.o"
     include "build/data/code/aspMain.rodata.o"

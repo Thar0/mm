@@ -1,7 +1,7 @@
 #include "global.h"
 #include "buffers.h"
-#include "build/assets/sequence_sizes.h"
-#include "build/assets/soundfont_sizes.h"
+#include "build/assets/audio/sequence_sizes.h"
+#include "build/assets/audio/soundfont_sizes.h"
 #define SFX_SEQ_SIZE Sequence_0_SIZE
 #define AMBIENCE_SEQ_SIZE Sequence_1_SIZE
 

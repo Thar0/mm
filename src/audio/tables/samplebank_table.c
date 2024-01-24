@@ -20,7 +20,7 @@ extern AudioTable gSampleBankTable;
     extern u8 name##_Start[]; extern u8 name##_Size[];
 #define DEFINE_SAMPLE_BANK_PTR(name, medium, cachePolicy)
 
-#include "samplebank_table.h"
+#include "audio/samplebank_table.h"
 
 #undef DEFINE_SAMPLE_BANK
 #undef DEFINE_SAMPLE_BANK_PTR
@@ -34,7 +34,7 @@ NO_REORDER AudioTableHeader sSampleBankTableHeader = {
 #define DEFINE_SAMPLE_BANK_PTR(name, medium, cachePolicy) \
     1+
 
-#include "samplebank_table.h"
+#include "audio/samplebank_table.h"
 
 #undef DEFINE_SAMPLE_BANK
 #undef DEFINE_SAMPLE_BANK_PTR
@@ -54,7 +54,7 @@ NO_REORDER AudioTableEntry sSampleBankTableEntries[] = {
 #define DEFINE_SAMPLE_BANK_PTR(index, medium, cachePolicy) \
     { (index), 0, (medium), (cachePolicy), 0, 0, 0 },
 
-#include "samplebank_table.h"
+#include "audio/samplebank_table.h"
 
 #undef DEFINE_SAMPLE_BANK
 #undef DEFINE_SAMPLE_BANK_PTR
