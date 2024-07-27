@@ -326,10 +326,8 @@ DEP_FILES := $(O_FILES:.o=.asmproc.d) $(OVL_RELOC_FILES:.o=.d)
 OTHER_DIRS := baserom dmadata linker_scripts include/tables
 
 # create build directories
-$(shell mkdir -p $(foreach dir,$(OTHER_DIRS),$(BUILD_DIR)/$(dir)) \
-                 $(foreach dir, \
-                     $(SRC_DIRS) \
-                     $(ASM_DIRS) \
+$(shell mkdir -p $(foreach dir,$(SRC_DIRS) $(ASM_DIRS) $(OTHER_DIRS),$(BUILD_DIR)/$(dir)))
+$(shell mkdir -p $(foreach dir,\
                      $(ASSET_BIN_DIRS) \
                      $(ASSET_BIN_DIRS_C_FILES) \
                      $(AIFF_DIRS) \
@@ -341,7 +339,7 @@ $(shell mkdir -p $(foreach dir,$(OTHER_DIRS),$(BUILD_DIR)/$(dir)) \
                      $(AIFF_EXTRACT_DIRS) \
                      $(SAMPLEBANK_EXTRACT_DIRS) \
                      $(SOUNDFONT_EXTRACT_DIRS) \
-                     $(SEQUENCE_EXTRACT_DIRS), \
+                     $(SEQUENCE_EXTRACT_DIRS),\
                    $(dir:$(EXTRACTED_DIR)/%=$(BUILD_DIR)/%)))
 
 # directory flags
