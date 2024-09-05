@@ -154,12 +154,13 @@ assetsTracker = dict()
 # Assets that we don't have a proper way of tracking right now
 ignoredAssets = {
     "archives",
+    "code",
 }
 
 # Manual fixer for files that would be counted in wrong categories
 # "filename": "correctSection"
 fileSectionFixer = {
-    "osFlash": "code" # Currently in `src/libultra` (would be counted as boot)
+    "sequence_font_table": "code", # Currently in assets (would be counted as an audio asset)
 }
 
 for assetCat in assetsCategories:
@@ -238,6 +239,10 @@ for line in map_file:
                     assetCat = obj_file.split("/")[4]
                 else:
                     assetCat = obj_file.split("/")[3]
+
+                if objFileName in fileSectionFixer:
+                    assetCat = fileSectionFixer[objFileName]
+
                 if assetCat in assetsTracker:
                     assetsTracker[assetCat]["currentSize"] += file_size
                 elif assetCat in ignoredAssets:
