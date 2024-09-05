@@ -223,10 +223,9 @@ for line in map_file:
                 srcCat = srcCategoriesFixer[srcCat]
 
             if objFileName in fileSectionFixer:
-                correctSection = fileSectionFixer[objFileName]
-                if correctSection in srcTracker:
-                    srcTracker[correctSection]["totalSize"] += file_size
-            elif obj_file.startswith("build/n64-us/src"):
+                srcCat = fileSectionFixer[objFileName]
+
+            if obj_file.startswith("build/n64-us/src"):
                 if srcCat in srcTracker:
                     srcTracker[srcCat]["totalSize"] += file_size
             elif (obj_file.startswith("build/n64-us/asm")):
