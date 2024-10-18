@@ -244,6 +244,9 @@ beginseg
     include "$(BUILD_DIR)/src/boot/libc/strcpy.o"
     include "$(BUILD_DIR)/src/boot/libc/memmove.o"
     include "$(BUILD_DIR)/src/boot/build.o"
+#ifdef COMPILER_GCC
+    include "$(BUILD_DIR)/src/gcc_fix/missing_gcc_functions.o"
+#endif
 endseg
 
 beginseg
@@ -794,13 +797,6 @@ beginseg
     include "$(BUILD_DIR)/src/buffers/gfxstack.o"
     include "$(BUILD_DIR)/src/buffers/gfxpools.o"
     include "$(BUILD_DIR)/src/buffers/audio_heap.o"
-endseg
-
-beginseg
-    name "system_heap"
-    flags NOLOAD
-    // This segment is just a dummy that is used to know where the other buffers (non framebuffers) end
-    include "$(BUILD_DIR)/src/buffers/system_heap.o"
 endseg
 
 beginseg
